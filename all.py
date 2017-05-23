@@ -7,7 +7,7 @@ import my_lib
 import matplotlib.pyplot as plt
 import math
 
-def tranform_from_sparse_matrix_to_dense_matrix(path,subject_number,file_number):
+def tranform_from_dense_matrix_to_sparse_matrix(path,subject_number,file_number):
 	source_file=open(path)
 	input_list=[]
 	label_list=[]
@@ -172,12 +172,12 @@ class Network:
 		plt.ylabel('accurancy')
 		plt.show()
 
-if __name__ = '__name__':
+if __name__ == '__main__':
 	# Doc du lieu, chuyen ma tran day thanh ma tran thua, chia label_input_list thanh 5 phan
 	subject_number=20
 	file_number=17809
 	source_file_path='D:/MLProject/machine_learning_btl2/preprocessing/data/data.txt'
-	separatated_label_input_list=tranform_from_dense_matrix_to_sparse_matrix(source_file_path,subject_number,file_number)
+	label_input_list=tranform_from_dense_matrix_to_sparse_matrix(source_file_path,subject_number,file_number)
 	print('1')
 
 	# Kiem thu Cross-validation
