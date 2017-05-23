@@ -1,20 +1,24 @@
 import os
 import heapq
-dir='C:/Users/user/Documents/machine_learning_btl/preprocessing/stop-word-list-dir'
-file=[open(dir+'/'+f) for f in os.listdir(dir)]
-data=[f.read() for f in file ]
-for f in file:
+import my_lib
+dir='C:/Users/user/Documents/machine_learning_btl2/preprocessing/stop-word-list-dir'
+file_list=[open(dir+'/'+f) for f in os.listdir(dir)]
+data_list=[f.read() for f in file_list ]
+for f in file_list:
     f.close()
-file_data_list=[d.split() for d in data]
+list_data_list=[d.split() for d in data_list]
+for list_data in list_data_list:
+	list_data.sort()
+lemmatized_data_list=[my_lib.lemmatize_stem_word(d) for d in list_data_list]
 #print(data1_list)
 #print(data3_list)
-data_list=list(heapq.merge(*file_data_list))
-temp_data_list=[data_list[0]]
-for x in data_list:
+final_data_list=list(heapq.merge(*lemmatized_data_list))
+temp_data_list=[final_data_list[0]]
+for x in final_data_list:
     if (x != temp_data_list[-1]):
         temp_data_list.append( x )
-data_list=temp_data_list
-print(data_list)
-merged_f=open('C:/Users/user/Documents/machine_learning_btl/preprocessing/'+'merged-stop-word-list.txt','w')
-merged_f.write('\n'.join(data_list))
+final_data_list=temp_data_list
+print(final_data_list)
+merged_f=open('C:/Users/user/Documents/machine_learning_btl2/preprocessing/'+'lemmatized-merged-stop-word-list.txt','w')
+merged_f.write('\n'.join(final_data_list))
 merged_f.close()
